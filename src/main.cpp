@@ -20,19 +20,19 @@ int main(int argc, char **argv)
     eeros::logger::Logger::setDefaultStreamLogger(std::cout);
     eeros::logger::Logger log = eeros::logger::Logger::getLogger();
 
-    log.info() << "Starting template project...";
-
-    // log.info() << "Initializing hardware...";
-    // eeros::hal::HAL& hal = eeros::hal::HAL::instance();
-    // hal.readConfigFromFile(&argc, argv);
+    log.info() << "Starting beetle project...";
+    
+    log.info() << "Initializing hardware...";
+    eeros::hal::HAL& hal = eeros::hal::HAL::instance();
+    hal.readConfigFromFile(&argc, argv);
 
     log.info() << "Initializing control system...";
-    ControlSystem cs(dt);
+    ControlSystem cs(0.1);
 
     log.info() << "Initializing safety system...";
     MyRobotSafetyProperties sp(cs, dt);
     eeros::safety::SafetySystem ss(sp, dt);
-    cs.timedomain.registerSafetyEvent(ss, sp.doSystemOff); // fired if timedomain fails to run properly
+    cs.timedomain.registerSafetyEvent(ss, sp.abort); // fired if timedomain fails to run properly
     signal(SIGINT, signalHandler);
 
     log.info() << "Initializing sequencer...";
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 
     mainSequence.wait();
 
-    log.info() << "Template project finished...";
+    log.info() << "Beetle project finished...";
 
     return 0;
 }
