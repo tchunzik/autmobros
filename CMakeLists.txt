@@ -17,11 +17,11 @@ include_directories(
 
 file(GLOB all_SRCS
         "${PROJECT_SOURCE_DIR}/inc/*.h"
-		"${PROJECT_SOURCE_DIR}/inc/*.hpp"
+		    "${PROJECT_SOURCE_DIR}/inc/*.hpp"
         "${PROJECT_SOURCE_DIR}/inc/*/*.h"
-		"${PROJECT_SOURCE_DIR}/inc/*/*.hpp"
+		    "${PROJECT_SOURCE_DIR}/inc/*/*.hpp"
         "${PROJECT_SOURCE_DIR}/src/*.cpp"
-		"${PROJECT_SOURCE_DIR}/src/*.c"
+		    "${PROJECT_SOURCE_DIR}/src/*.c"
         )
 
 add_custom_command(OUTPUT copyHalConfig POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${PROJECT_SOURCE_DIR}/config/*.json" "${CMAKE_BINARY_DIR}")

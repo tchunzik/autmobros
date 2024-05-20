@@ -22,15 +22,7 @@ public:
     ControlSystem(double dt);
 
     // Define Blocks
-    //------------
-    //Sequencer exercise//
-    // PeripheralInput<> q1;
-    // Gain<> g;
-    // PeripheralOutput<> servo;
-    // Constant<> c;
-    // 
-    //--------------
-
+    
     PeripheralInput<> E1, E2;
     Mux<2> E;
     D<eeros::math::Vector2> Ed;
