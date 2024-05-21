@@ -14,6 +14,7 @@
 #include "customBlocks/InvKin.hpp"
 #include <eeros/control/DeMux.hpp>
 #include <eeros/control/PeripheralOutput.hpp>
+#include <eeros/control/Saturation.hpp>
 
 using namespace eeros::control;
 
@@ -30,6 +31,20 @@ public:
     FwKinOdom fwKinOdom;
     Constant<> RvRx, omegaR;
     InvKin invKin;
+    //-----MotIncEx2----
+    Saturation<> qdMax;
+    // Gain<> cont;
+    Gain<> i;
+    Gain<> kM;
+    // PeripheralOutput<> M1;
+    //-----MotIncEx3----
+    Gain<> cont;
+    Saturation<> QMax;
+    Gain<> iInv;
+    Gain<> kMInv;
+    Gain<> R;
+    PeripheralOutput<> M1;
+
 
     TimeDomain timedomain;
 };
