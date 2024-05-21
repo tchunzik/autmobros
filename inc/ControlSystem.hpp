@@ -10,9 +10,11 @@
 #include <eeros/control/D.hpp>
 #include "customBlocks/FwKinOdom.hpp"
 #include "customBlocks/Controller.hpp"
+#include "customBlocks/ControllerPI.hpp"
 #include "customBlocks/InvMotMod.hpp"
 #include "customBlocks/InvKin.hpp"
 #include <eeros/control/DeMux.hpp>
+#include <eeros/control/Sum.hpp>
 #include <eeros/control/PeripheralOutput.hpp>
 #include <eeros/control/Saturation.hpp>
 
@@ -25,26 +27,15 @@ public:
 
     // Define Blocks
     
+    // Define Blocks
     PeripheralInput<> E1, E2;
     Mux<2> E;
-    D<eeros::math::Vector2> Ed;
-    FwKinOdom fwKinOdom;
-    Constant<> RvRx, omegaR;
-    InvKin invKin;
-    //-----MotIncEx2----
-    Saturation<> qdMax;
-    // Gain<> cont;
-    Gain<> i;
-    Gain<> kM;
-    // PeripheralOutput<> M1;
-    //-----MotIncEx3----
-    Gain<> cont;
-    Saturation<> QMax;
-    Gain<> iInv;
-    Gain<> kMInv;
-    Gain<> R;
+    Mux<2> E_d;
+    Controller<eeros::math::Vector2> cont;
+    InvMotMod<eeros::math::Vector2> invMotMod;
+    DeMux<2> U;
     PeripheralOutput<> M1;
-
+    PeripheralOutput<> M2;
 
     TimeDomain timedomain;
 };

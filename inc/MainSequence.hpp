@@ -30,12 +30,9 @@ public:
         while (eeros::sequencer::Sequencer::running)
         {
             sleep(1.0);
-            log.info() << cs.E1.getOut().getSignal();
-            log.info() << cs.E2.getOut().getSignal();
-
-            sleep(1.0);
-            // log.info() << cs.qdMax.getOut().getSignal(); //DC
-            log.info() << cs.QMax.getOut().getSignal(); //Torque
+            log.info() << cs.cont.getOut(0).getSignal();
+            log.info() << cs.cont.getOut(1).getSignal();
+            
         }
         return 0;
     }
