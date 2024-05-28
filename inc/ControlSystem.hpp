@@ -26,16 +26,17 @@ public:
     ControlSystem(double dt);
 
     // Define Blocks
-    
-    // Define Blocks
     PeripheralInput<> E1, E2;
     Mux<2> E;
-    Mux<2> E_d;
-    Controller<eeros::math::Vector2> cont;
-    InvMotMod<eeros::math::Vector2> invMotMod;
-    DeMux<2> U;
+    D<eeros::math::Vector2> Ed;
+    FwKinOdom fwKinOdom;
+    Constant<> RvRx, omegaR;
+    InvKin invKin;
+    D<> E1d;
+    Gain<> g;
+    ControllerPI<> controllerpi;
+    InvMotMod<> invMotMod;
     PeripheralOutput<> M1;
-    PeripheralOutput<> M2;
 
     TimeDomain timedomain;
 };
